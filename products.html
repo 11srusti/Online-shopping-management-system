@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Products</title>
+    <link rel="stylesheet" href="stylesproducts.css">
+</head>
+<body>
+    <header>
+        <div class="header-content">
+            <h1>Online Shopping Management System</h1>
+            <nav>
+                <a class="headings" href="index.html">Home</a>
+                <a class="headings" href="products.html">Products</a>
+                <a class="headings" href="cart.html">Cart</a>
+                <button class="logout-button" onclick="logout()">Log Out</button>
+            </nav>
+        </div>
+    </header>
+    <main>
+        <h2>Product List</h2>
+        <div class="products"></div>
+    </main>
+    <footer>
+        <p>&copy; 2024 Online Shopping Management System. All rights reserved.</p>
+    </footer>
+    <script>
+        const products = [
+            { id: 1, name: 'Product 1', price: 1000, image: 'product1.jpeg', description: 'Description of Product 1' },
+            { id: 2, name: 'Product 2', price: 2050, image: 'product2.jpeg', description: 'Description of Product 2' },
+            { id: 3, name: 'Product 3', price: 3000, image: 'product3.jpeg', description: 'Description of Product 3' },
+            { id: 4, name: 'Product 4', price: 1500, image: 'product4.jpeg', description: 'Description of Product 4' },
+            { id: 5, name: 'Product 5', price: 500, image: 'product5.jpeg', description: 'Description of Product 5' },
+            { id: 6, name: 'Product 6', price: 600, image: 'product6.jpeg', description: 'Description of Product 6' },
+            { id: 7, name: 'Product 7', price: 550, image: 'product7.jpeg', description: 'Description of Product 7' },
+            { id: 8, name: 'Product 8', price: 1600, image: 'product8.jpeg', description: 'Description of Product 8' },
+            { id: 9, name: 'Product 9', price: 2250, image: 'product9.jpeg', description: 'Description of Product 9' },
+            { id: 10, name: 'Product 10', price: 750, image: 'product10.jpeg', description: 'Description of Product 10' },
+            { id: 11, name: 'Product 11', price: 3350, image: 'product11.jpeg', description: 'Description of Product 11' },
+            { id: 12, name: 'Product 12', price: 3350, image: 'product12.jpeg', description: 'Description of Product 12' }
+        ];
+
+        function displayProducts() {
+            const productsContainer = document.querySelector('.products');
+            productsContainer.innerHTML = '';
+
+            products.forEach(product => {
+                const productElement = document.createElement('div');
+                productElement.className = 'product-item';
+                productElement.innerHTML = `
+                    <img src="${product.image}" alt="${product.name}">
+                    <h3>${product.name}</h3>
+                    <p>Price: rs.${product.price}</p>
+                    <button onclick="viewProduct(${product.id})">View Details</button>
+                `;
+                productsContainer.appendChild(productElement);
+            });
+        }
+
+        function viewProduct(productId) {
+            const product = products.find(p => p.id === productId);
+            localStorage.setItem('selectedProduct', JSON.stringify(product));
+            window.location.href = 'product.html';
+        }
+
+        function logout() {
+            alert('You have been logged out.');
+        }
+
+        document.addEventListener('DOMContentLoaded', displayProducts);
+    </script>
+</body>
+</html>

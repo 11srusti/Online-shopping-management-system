@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product Details</title>
+    <link rel="stylesheet" href="stylesproducts.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header>
+        <div class="header-content">
+            <h1>Online Shopping Management System</h1>
+            <nav>
+                <a href="index.html">Home</a>
+                <a href="products.html">Products</a>
+                <a href="cart.html">Cart</a>
+                <button class="logout-button" onclick="logout()">Log Out</button>
+            </nav>
+        </div>
+    </header>
+    <main>
+        <div class="product-details"></div>
+    </main>
+    <footer>
+        <p>&copy; 2024 Online Shopping Management System. All rights reserved.</p>
+    </footer>
+    <script>
+        function addToCart(productName, productPrice, productImage) {
+            let cart = JSON.parse(localStorage.getItem('cart')) || [];
+            const productIndex = cart.findIndex(item => item.name === productName);
+
+            if (productIndex > -1) {
+                cart[productIndex].quantity += 1;
+            } else {
+                cart.push({ name: productName, price: productPrice, image: productImage, quantity: 1 });
+            }
+
+            localStorage.setItem('cart', JSON.stringify(cart));
+            alert(productName + ' has been added to your cart.');
+        }
+
+        function displayProductDetails() {
+            const product = JSON.parse(localStorage.getItem('selectedProduct'));
+            const productDetailsContainer = document.querySelector('.product-details');
+            productDetailsContainer.innerHTML = `
+                <img src="${product.image}" alt="${product.name}">
+                <h2>${product.name}</h2>
+                <p>Price: $${product.price}</p>
+                <p>Description: ${product.description}</p>
+                <button onclick="addToCart('${product.name}', ${product.price}, '${product.image}')">Add to Cart</button>
+            `;
+        }
+
+        function logout() {
+            alert('You have been logged out.');
+        }
+    
+        document.addEventListener('DOMContentLoaded', displayProductDetails);
+    </script>
+</body>
+</html>

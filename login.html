@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login / Sign-Up</title>
+    <link rel="stylesheet" href="styleslogin.css">
+    <style>
+        /* Add these styles for showing and hiding forms */
+        .hidden {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="form-container" id="login-form">
+            <h2>Login</h2>
+            <form id="login-form-element">
+                <label for="login-email">Email Address</label>
+                <input type="email" id="login-email" required>
+                <label for="login-password">Password</label>
+                <input type="password" id="login-password" required>
+                <button type="button" onclick="login()">Login</button>
+            </form>
+            <p>New user? <a href="javascript:void(0);" onclick="toggleForms()">Sign up</a></p>
+        </div>
+        
+        <div class="form-container hidden" id="signup-form">
+            <h2>Sign Up</h2>
+            <form id="signup-form-element">
+                <label for="signup-email">Email Address</label>
+                <input type="email" id="signup-email" required>
+                <label for="signup-password">Password</label>
+                <input type="password" id="signup-password" required>
+                <label for="signup-firstname">First Name</label>
+                <input type="text" id="signup-firstname" required>
+                <label for="signup-lastname">Last Name</label>
+                <input type="text" id="signup-lastname" required>
+                <label for="signup-phone">Phone Number</label>
+                <input type="text" id="signup-phone" required>
+                <label for="signup-house">House Number</label>
+                <input type="text" id="signup-house" required>
+                <label for="signup-street">Street</label>
+                <input type="text" id="signup-street" required>
+                <label for="signup-city">City</label>
+                <input type="text" id="signup-city" required>
+                <label for="signup-state">State</label>
+                <input type="text" id="signup-state" required>
+                <label for="signup-pincode">Pincode</label>
+                <input type="text" id="signup-pincode" required>
+                <button type="button" onclick="signup()">Sign Up</button>
+            </form>
+            <p>Already have an account? <a href="javascript:void(0);" onclick="toggleForms()">Login</a></p>
+        </div>
+    </div>
+    <script>
+        function toggleForms() {
+            const loginForm = document.getElementById('login-form');
+            const signupForm = document.getElementById('signup-form');
+            loginForm.classList.toggle('hidden');
+            signupForm.classList.toggle('hidden');
+        }
+
+        function login() {
+            const email = document.getElementById('login-email').value;
+            const password = document.getElementById('login-password').value;
+            alert(`Logged in with email: ${email}`);
+            window.location.href = 'index.html';
+        }
+
+        function signup() {
+            const email = document.getElementById('signup-email').value;
+            const password = document.getElementById('signup-password').value;
+            const firstName = document.getElementById('signup-firstname').value;
+            const lastName = document.getElementById('signup-lastname').value;
+            const phone = document.getElementById('signup-phone').value;
+            const house = document.getElementById('signup-house').value;
+            const street = document.getElementById('signup-street').value;
+            const city = document.getElementById('signup-city').value;
+            const state = document.getElementById('signup-state').value;
+            const pincode = document.getElementById('signup-pincode').value;
+            alert(`Signed up with email: ${email}`);
+            window.location.href = 'index.html';
+        }
+    </script>
+</body>
+</html>
